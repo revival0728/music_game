@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://pictures/start_btn.png" type="Texture" id=1]
-[ext_resource path="res://Start_Btn.gd" type="Script" id=2]
-[ext_resource path="res://Start_Btn_Button.gd" type="Script" id=3]
+[ext_resource path="res://Menu/Start_Btn.gd" type="Script" id=2]
+[ext_resource path="res://Menu/Start_Btn_Button.gd" type="Script" id=3]
 
 [sub_resource type="ImageTexture" id=1]
 
