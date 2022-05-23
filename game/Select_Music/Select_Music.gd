@@ -4,25 +4,48 @@ signal change_side
 
 var Difficulty_Btn
 var Bg_Node
+var Select_Bg
 var screen_size
 var now_difficulty	# integer
 var now_bg_node_side
 var difficulty_btns = []
 var bg_node_list = []
+var game_info
+var Comfirm_Btn
 
 
+func read_info():
+	var json = File.new()
+	json.open("res://song_template/options.json", File.READ)
+	var game_info = JSON.parse(json.get_as_text())
+	print(game_info)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	read_info()
+	
 	Difficulty_Btn = load("res://Select_Music/Difficulty_Btn.tscn")
 	Bg_Node = load("res://Select_Music/Bg_Node.tscn")
+	Select_Bg = load("res://Select_Music/Select_Bg.tscn")
+	Comfirm_Btn = load("res://Select_Music/Comfirm_Btn.tscn")
 	
-	var diff_btns_pos = {
-		"easy": Vector2(0.8, 0.4),
-		"normal": Vector2(0.8, 0.6),
-		"hard": Vector2(0.8, 0.8),
-	}
 	screen_size = get_viewport().get_visible_rect().size
+	
+	var select_bg = Select_Bg.instance()
+	select_bg.set_scale(
+		Vector2(
+			screen_size.x/select_bg.origin_width,
+			screen_size.y/select_bg.origin_height
+		)
+	)
+	select_bg.set_position(screen_size/2)
+	add_child(select_bg)
+		
+	var diff_btns_pos = {
+		"easy": Vector2(0.85, 0.3),
+		"normal": Vector2(0.85, 0.5),
+		"hard": Vector2(0.85, 0.7),
+	}
 	for diff in ["easy", "normal", "hard"]:
 		var difficulty_btn = Difficulty_Btn.instance()
 		difficulty_btn.set_position(
@@ -38,9 +61,9 @@ func _ready():
 		add_child(i)
 	
 	var bg_node_pos = [
-		Vector2(0.265, 0.25),
-		Vector2(0.3, 0.5),
-		Vector2(0.265, 0.75)
+		Vector2(0.165, 0.25),
+		Vector2(0.2, 0.5),
+		Vector2(0.165, 0.75)
 	]
 	now_bg_node_side = 0
 	for i in range(3):

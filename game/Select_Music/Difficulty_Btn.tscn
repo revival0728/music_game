@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://pictures/difficulty_hard.png" type="Texture" id=1]
 [ext_resource path="res://pictures/difficulty_normal.png" type="Texture" id=2]
 [ext_resource path="res://pictures/difficulty_easy.png" type="Texture" id=3]
 [ext_resource path="res://Select_Music/Difficulty_Btn.gd" type="Script" id=4]
 [ext_resource path="res://Select_Music/Difficulty_Btn_Button.gd" type="Script" id=5]
+[ext_resource path="res://pictures/difficulty_base.png" type="Texture" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -16,6 +17,14 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 60, 19 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource( 4 )
@@ -37,5 +46,10 @@ frames = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, -1 )
 shape = SubResource( 2 )
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( 1.58916, 30.1947 )
+scale = Vector2( 0.915081, 1.07677 )
+frames = SubResource( 3 )
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
